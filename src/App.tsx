@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { ChatOptions } from "./components";
 import { ChatPage } from "./pages";
+import { chatData } from "./data/chat-data";
 
 function App() {
-  const [chat] = useState(true);
+  const [isChat] = useState(true);
+  const [chat] = useState(chatData);
+
   return (
     <>
       <div>Mukalma</div>
 
-      {!chat ? <ChatOptions /> : <ChatPage />}
+      {!isChat ? <ChatOptions /> : <ChatPage chats={chat} />}
     </>
   );
 }
