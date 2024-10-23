@@ -1,15 +1,11 @@
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { applicationState, chatState } from "./atoms/state";
 import { ChatOptions } from "./components";
 import { ChatPage } from "./pages";
-import { chatData } from "./data/chat-data";
 
 function App() {
-  const [isChat, setIsChat] = useState(false);
-  const [chat, setChat] = useState(chatData);
-
-  const clearChat = () => {
-    setChat([]);
-  };
+  const [appState, setAppState] = useRecoilState(applicationState);
+  const [chats] = useRecoilState(chatState);
 
   return (
     <div className="flex justify-center">
@@ -17,19 +13,18 @@ function App() {
         <header>
           <div className="flex justify-between">
             <h1>Mukalma</h1>
-            <div onClick={() => setIsChat(false)}>Options</div>
+            <div onClick={() => setAppState({ isChatScreen: false })}>
+              Options
+            </div>
           </div>
         </header>
 
         <main>
           <div>
-            {!isChat ? (
-              <ChatOptions
-                onConfirm={() => setIsChat(true)}
-                onClearChat={clearChat}
-              />
+            {!appState.isChatScreen ? (
+              <ChatOptions />
             ) : (
-              <ChatPage chats={chat} />
+              <ChatPage chats={chats.chats} />
             )}
           </div>
         </main>

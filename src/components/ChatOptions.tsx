@@ -1,16 +1,12 @@
 import { useRecoilState } from "recoil";
 import { Button } from "./Button";
 import { Input } from "./Input";
-import { playerState } from "../atoms/state";
+import { applicationState, playerState } from "../atoms/state";
 import { ChangeEvent } from "react";
 
-type Props = {
-  onConfirm: () => void;
-  onClearChat: () => void;
-};
-
-export const ChatOptions = ({ onConfirm, onClearChat }: Props) => {
+export const ChatOptions = () => {
   const [player, setPlayer] = useRecoilState(playerState);
+  const [, setAppState] = useRecoilState(applicationState);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -38,7 +34,9 @@ export const ChatOptions = ({ onConfirm, onClearChat }: Props) => {
         onChange={handleChange}
       />
 
-      <Button onClick={onConfirm}>Confirm</Button>
+      <Button onClick={() => setAppState({ isChatScreen: true })}>
+        Confirm
+      </Button>
 
       {/* <Button onClick={onClearChat}>Clear Chat?</Button> */}
     </div>
