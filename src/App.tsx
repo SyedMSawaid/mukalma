@@ -3,7 +3,7 @@ import { ChatOptions } from "./components";
 import { ChatPage } from "./pages";
 
 function App() {
-  const [chat, setChat] = useState(true);
+  const [chat] = useState(true);
   return (
     <>
       <div>Mukalma</div>
