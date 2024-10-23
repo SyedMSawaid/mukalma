@@ -12,6 +12,7 @@ export const ChatPage = ({ chats }: Props) => {
       <div className="flex flex-col">
         {chats.map((chat) => (
           <MessageBubble
+            key={chat.id}
             chat={chat}
             side={chat.player == 1 ? "LEFT" : "RIGHT"}
           />

@@ -1,12 +1,12 @@
 import { ComponentProps } from "react";
 
-type Props = {} & ComponentProps<"input">;
+type Props = { label: string } & ComponentProps<"input">;
 
-export const Input = ({ id }: Props) => {
+export const Input = ({ id, label, ...props }: Props) => {
   return (
     <div>
-      <label htmlFor={id}></label>
-      <input type="text" id={id} />
+      <label htmlFor={id}>{label}</label>
+      <input type="text" id={id} {...props} />
     </div>
   );
 };

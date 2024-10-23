@@ -4,15 +4,39 @@ import { ChatPage } from "./pages";
 import { chatData } from "./data/chat-data";
 
 function App() {
-  const [isChat] = useState(true);
-  const [chat] = useState(chatData);
+  const [isChat, setIsChat] = useState(false);
+  const [chat, setChat] = useState(chatData);
+
+  const clearChat = () => {
+    setChat([]);
+  };
 
   return (
-    <>
-      <div>Mukalma</div>
+    <div className="flex justify-center">
+      <div className="container">
+        <header>
+          <div className="flex justify-between">
+            <h1>Mukalma</h1>
+            <div onClick={() => setIsChat(false)}>Options</div>
+          </div>
+        </header>
 
-      {!isChat ? <ChatOptions /> : <ChatPage chats={chat} />}
-    </>
+        <main>
+          <div>
+            {!isChat ? (
+              <ChatOptions
+                onConfirm={() => setIsChat(true)}
+                onClearChat={clearChat}
+              />
+            ) : (
+              <ChatPage chats={chat} />
+            )}
+          </div>
+        </main>
+
+        {/* <footer></footer> */}
+      </div>
+    </div>
   );
 }
 
