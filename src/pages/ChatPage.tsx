@@ -1,4 +1,4 @@
-import { MessageBubble } from "../components";
+import { MessageBox, MessageBubble } from "../components";
 import { Chat } from "../data";
 
 type Props = {
@@ -17,6 +17,10 @@ export const ChatPage = ({ chats }: Props) => {
             side={chat.player == 1 ? "LEFT" : "RIGHT"}
           />
         ))}
+      </div>
+
+      <div>
+        <MessageBox />
       </div>
     </div>
   );
