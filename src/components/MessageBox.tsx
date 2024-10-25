@@ -33,7 +33,7 @@ export const MessageBox = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-y-2">
       <Textarea value={message} onChange={(e) => setMessage(e.target.value)} />
       <Button onClick={onSend}>Send</Button>
     </div>

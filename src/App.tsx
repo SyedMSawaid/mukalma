@@ -13,6 +13,7 @@ function App() {
         <header>
           <div className="flex justify-between">
             <h1>Mukalma</h1>
+            <div>Download</div>
             <div
               onClick={() =>
                 setAppState((prev) => ({ ...prev, isChatScreen: false }))
