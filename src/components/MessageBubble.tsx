@@ -10,13 +10,12 @@ export const MessageBubble = ({ chat, side }: Props) => {
   return (
     <div
       className={cn(
-        "border border-black p-6 rounded-md",
-        side === "LEFT" ? "self-start" : "self-end"
+        "border border-black p-6 rounded-md w-3/5",
+        side === "LEFT" ? "self-start text-left" : "self-end text-right"
       )}
     >
-      <div>
+      <div className="">
         <div>{chat.message}</div>
-        <div>{chat.timeStamp.toString()}</div>
       </div>
     </div>
   );
