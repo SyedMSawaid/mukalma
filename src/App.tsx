@@ -8,25 +8,27 @@ function App() {
   const [chats] = useRecoilState(chatState);
 
   return (
-    <div className="flex justify-center">
-      <div className="container">
+    <div className="flex flex-col items-center h-screen">
+      <div className="container flex flex-col grow">
         <header>
           <div className="flex justify-between">
             <h1>Mukalma</h1>
-            <div onClick={() => setAppState({ isChatScreen: false })}>
+            <div
+              onClick={() =>
+                setAppState((prev) => ({ ...prev, isChatScreen: false }))
+              }
+            >
               Options
             </div>
           </div>
         </header>
 
-        <main>
-          <div>
-            {!appState.isChatScreen ? (
-              <ChatOptions />
-            ) : (
-              <ChatPage chats={chats.chats} />
-            )}
-          </div>
+        <main className="flex grow">
+          {!appState.isChatScreen ? (
+            <ChatOptions />
+          ) : (
+            <ChatPage chats={chats.chats} />
+          )}
         </main>
 
         {/* <footer></footer> */}

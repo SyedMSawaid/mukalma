@@ -1,5 +1,5 @@
 import { Chat } from "../data";
-import { cn } from "../helpers";
+import { cn } from "../lib";
 
 type Props = {
   chat: Chat;

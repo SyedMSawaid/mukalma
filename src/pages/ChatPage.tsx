@@ -7,7 +7,7 @@ type Props = {
 
 export const ChatPage = ({ chats }: Props) => {
   return (
-    <div className="">
+    <div className="grow">
       <div className="">Chat Page</div>
       <div className="flex flex-col">
         {chats.map((chat) => (

@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
-import { Button } from "./Button";
-import { Input } from "./Input";
+import { Button } from ".";
+import { Input } from ".";
 import { applicationState, playerState } from "../atoms/state";
 import { ChangeEvent } from "react";
 
@@ -18,27 +18,31 @@ export const ChatOptions = () => {
   };
 
   return (
-    <div>
-      <Input
-        label="First Player"
-        id="firstPlayer"
-        name="firstPlayer"
-        value={player.firstPlayer}
-        onChange={handleChange}
-      />
-      <Input
-        label="Second Player"
-        id="secondPlayer"
-        name="secondPlayer"
-        value={player.secondPlayer}
-        onChange={handleChange}
-      />
+    <div className="flex items-center justify-center grow">
+      <div className="flex flex-col px-20 border border-black rounded-lg gap-y-4 py-36">
+        <Input
+          label="First Player"
+          id="firstPlayer"
+          name="firstPlayer"
+          value={player.firstPlayer}
+          onChange={handleChange}
+        />
+        <Input
+          label="Second Player"
+          id="secondPlayer"
+          name="secondPlayer"
+          value={player.secondPlayer}
+          onChange={handleChange}
+        />
 
-      <Button onClick={() => setAppState({ isChatScreen: true })}>
-        Confirm
-      </Button>
-
-      {/* <Button onClick={onClearChat}>Clear Chat?</Button> */}
+        <Button
+          onClick={() =>
+            setAppState((prev) => ({ ...prev, isChatScreen: true }))
+          }
+        >
+          Confirm
+        </Button>
+      </div>
     </div>
   );
 };

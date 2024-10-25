@@ -12,7 +12,8 @@ export const playerState = atom({
 export const applicationState = atom({
   key: "applicationState",
   default: {
-    isChatScreen: true,
+    isChatScreen: false,
+    activePlayer: 1,
   },
 });
 
