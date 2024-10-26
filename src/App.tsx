@@ -1,15 +1,42 @@
-import { LucideDownload, LucideSettings } from "lucide-react";
+import { LucideDownload, LucideSettings, LucideTrash } from "lucide-react";
 import { useRecoilState } from "recoil";
 import { applicationState, chatState } from "./atoms/state";
-import { ChatOptions } from "./components";
+import { Button, ChatOptions } from "./components";
 import { ChatPage } from "./pages";
+import jsPDF from "jspdf";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { useState } from "react";
 
 function App() {
   const [appState, setAppState] = useRecoilState(applicationState);
-  const [chats] = useRecoilState(chatState);
+  const [chats, setChats] = useRecoilState(chatState);
+  const [openDialog, setOpenDialog] = useState(false);
 
   const downloadChat = () => {
-    return;
+    const doc = new jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: [210, 297],
+    });
+
+    doc.html(`<div>Hi</div>`, {
+      async callback(doc) {
+        doc.save("pdf_name");
+      },
+    });
+  };
+
+  const cleanChat = () => {
+    setChats({ chats: [] });
+    setOpenDialog(false);
   };
 
   return (
@@ -23,6 +50,24 @@ function App() {
             </div>
             <div className="flex gap-x-4">
               <LucideDownload onClick={downloadChat} />
+
+              <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+                <DialogTrigger>
+                  <LucideTrash />
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Are you absolutely sure?</DialogTitle>
+                    <DialogDescription>
+                      This action cannot be undone. This will permanently delete
+                      your account and remove your data from our servers.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter>
+                    <Button onClick={cleanChat}>Confirm</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
 
               <LucideSettings
                 onClick={() =>
