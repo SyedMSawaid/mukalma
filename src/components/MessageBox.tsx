@@ -1,15 +1,16 @@
-import { useRecoilState } from "recoil";
-import { Button } from ".";
-import { Textarea } from ".";
-import { applicationState, chatState } from "../atoms/state";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { Button, Textarea } from ".";
+import { applicationState, chatState } from "../atoms/state";
 
 export const MessageBox = () => {
   const [, setChatState] = useRecoilState(chatState);
   const [appState, setAppState] = useRecoilState(applicationState);
   const [message, setMessage] = useState("");
 
-  const onSend = () => {
+  const sendMessage = () => {
+    if (message === "") return;
+
     const player = appState.activePlayer;
 
     setChatState((prev) => ({
@@ -19,7 +20,6 @@ export const MessageBox = () => {
           id: prev.chats.length + 1,
           player,
           message: message,
-          timeStamp: new Date(),
         },
       ],
     }));
@@ -32,10 +32,20 @@ export const MessageBox = () => {
     setMessage("");
   };
 
+  const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      sendMessage();
+    }
+  };
   return (
-    <div className="flex flex-col gap-y-2">
-      <Textarea value={message} onChange={(e) => setMessage(e.target.value)} />
-      <Button onClick={onSend}>Send</Button>
+    <div className="flex flex-row bg-white h-9 gap-x-2 s">
+      <Textarea
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        onKeyDown={onKeyDown}
+      />
+      <Button onClick={sendMessage}>Send</Button>
     </div>
   );
 };

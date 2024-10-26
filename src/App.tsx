@@ -17,7 +17,7 @@ import { useState } from "react";
 
 function App() {
   const [appState, setAppState] = useRecoilState(applicationState);
-  const [chats, setChats] = useRecoilState(chatState);
+  const [, setChats] = useRecoilState(chatState);
   const [openDialog, setOpenDialog] = useState(false);
 
   const downloadChat = () => {
@@ -79,11 +79,7 @@ function App() {
         </header>
 
         <main className="flex grow">
-          {!appState.isChatScreen ? (
-            <ChatOptions />
-          ) : (
-            <ChatPage chats={chats.chats} />
-          )}
+          {!appState.isChatScreen ? <ChatOptions /> : <ChatPage />}
         </main>
 
         {/* TODO: Add your footer here. */}
