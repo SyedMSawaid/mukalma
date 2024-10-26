@@ -1,4 +1,4 @@
-import { applicationState, chatState } from "@/atoms/state";
+import { chatState } from "@/atoms/state";
 import {
   Dialog,
   DialogContent,
@@ -9,13 +9,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import jsPDF from "jspdf";
-import { LucideDownload, LucideSettings, LucideTrash } from "lucide-react";
+import { LucideDownload, LucideTrash } from "lucide-react";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { Button } from "./ui/button";
 
 export const Navbar = () => {
-  const [, setAppState] = useRecoilState(applicationState);
   const [, setChats] = useRecoilState(chatState);
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -64,12 +63,6 @@ export const Navbar = () => {
             </DialogFooter>
           </DialogContent>
         </Dialog>
-
-        <LucideSettings
-          onClick={() =>
-            setAppState((prev) => ({ ...prev, isChatScreen: false }))
-          }
-        />
       </div>
     </div>
   );
