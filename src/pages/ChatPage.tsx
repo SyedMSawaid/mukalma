@@ -17,23 +17,21 @@ export const ChatPage = () => {
   }, [chats]);
 
   return (
-    <div className="grow">
-      <div className="">Chat Page</div>
+    <div className="flex flex-col items-center grow gap-y-1">
+      <ScrollArea className="h-[570px] w-[700px]">
+        <div className="flex flex-col gap-y-2" ref={container}>
+          {chats.chats.map((chat) => (
+            <MessageBubble
+              key={chat.id}
+              chat={chat}
+              side={chat.player == 1 ? "LEFT" : "RIGHT"}
+            />
+          ))}
+        </div>
+      </ScrollArea>
 
-      <div className="flex flex-col grow">
-        <ScrollArea className="grow">
-          <div className="flex flex-col pb-20 gap-y-2" ref={container}>
-            {chats.chats.map((chat) => (
-              <MessageBubble
-                key={chat.id}
-                chat={chat}
-                side={chat.player == 1 ? "LEFT" : "RIGHT"}
-              />
-            ))}
-          </div>
-        </ScrollArea>
-
-        <div className="sticky bottom-0 py-8">
+      <div className="sticky bottom-0 py-4 flex justify-center items-center w-[840px] border-2 border-amber-200 bg-amber-100 px-10 rounded-lg mb-4">
+        <div className="w-[700px]">
           <MessageBox />
         </div>
       </div>

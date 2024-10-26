@@ -39,8 +39,9 @@ export const MessageBox = () => {
     }
   };
   return (
-    <div className="flex flex-row bg-white h-9 gap-x-2 s">
+    <div className="flex flex-row gap-x-2 s">
       <Textarea
+        className="bg-white"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={onKeyDown}

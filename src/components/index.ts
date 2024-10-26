@@ -4,3 +4,4 @@ export * from "./ui/textarea";
 export * from "./ChatOptions";
 export * from "./MessageBubble";
 export * from "./MessageBox";
+export * from "./Navbar";
