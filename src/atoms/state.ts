@@ -1,3 +1,4 @@
+import { Chat } from "@/data";
 import { atom } from "recoil";
 
 export const applicationState = atom({
@@ -17,7 +18,7 @@ export const applicationState = atom({
 export const chatState = atom({
   key: "chatState",
   default: {
-    chats: JSON.parse(localStorage.getItem("chats") ?? "[]"),
+    chats: JSON.parse(localStorage.getItem("chats") ?? "[]") as Chat[],
   },
   effects: [
     ({ onSet }) => {
