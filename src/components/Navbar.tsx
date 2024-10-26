@@ -39,12 +39,12 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="container flex justify-between">
-      <div className="flex gap-x-4">
-        <h1>Mukalma</h1>
-        <p>Talk to yourself</p>
+    <div className="container flex items-center justify-between py-4">
+      <div className="w-1/3"></div>
+      <div className=" w-1/3flex gap-x-4">
+        <h1 className="font-serif text-2xl">Mukalma</h1>
       </div>
-      <div className="flex gap-x-4">
+      <div className="flex justify-end w-1/3 gap-x-4">
         <LucideDownload onClick={downloadChat} />
 
         <Dialog open={openDialog} onOpenChange={setOpenDialog}>
