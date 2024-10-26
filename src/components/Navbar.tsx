@@ -1,4 +1,4 @@
-import { chatState } from "@/atoms/state";
+import { applicationState, chatState } from "@/atoms/state";
 import {
   Dialog,
   DialogContent,
@@ -17,6 +17,7 @@ import { Icon } from "./Icon";
 
 export const Navbar = () => {
   const [, setChats] = useRecoilState(chatState);
+  const [, setAppState] = useRecoilState(applicationState);
   const [openDialog, setOpenDialog] = useState(false);
 
   const downloadChat = () => {
@@ -36,6 +37,7 @@ export const Navbar = () => {
   const cleanChat = () => {
     setChats({ chats: [] });
     setOpenDialog(false);
+    setAppState({ activePlayer: 1 });
   };
 
   return (
@@ -59,8 +61,8 @@ export const Navbar = () => {
             <DialogHeader>
               <DialogTitle>Are you absolutely sure?</DialogTitle>
               <DialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
+                Since this information isn't saved anywhere, deleting it will
+                delete it for good.
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
