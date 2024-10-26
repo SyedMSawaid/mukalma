@@ -13,6 +13,7 @@ import { LucideDownload, LucideTrash } from "lucide-react";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { Button } from "./ui/button";
+import { Icon } from "./Icon";
 
 export const Navbar = () => {
   const [, setChats] = useRecoilState(chatState);
@@ -43,12 +44,16 @@ export const Navbar = () => {
       <div className=" w-1/3flex gap-x-4">
         <h1 className="font-serif text-2xl">Mukalma</h1>
       </div>
-      <div className="flex justify-end w-1/3 gap-x-4">
-        <LucideDownload onClick={downloadChat} />
+      <div className="flex justify-end w-1/3 gap-x-2">
+        <Icon>
+          <LucideDownload onClick={downloadChat} />
+        </Icon>
 
         <Dialog open={openDialog} onOpenChange={setOpenDialog}>
           <DialogTrigger>
-            <LucideTrash />
+            <Icon>
+              <LucideTrash />
+            </Icon>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>

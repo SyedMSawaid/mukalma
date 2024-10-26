@@ -29,7 +29,7 @@ export const ChatPage = () => {
               <MessageBubble
                 key={chat.id}
                 chat={chat}
-                side={chat.player == 1 ? "LEFT" : "RIGHT"}
+                side={chat.player == 2 ? "LEFT" : "RIGHT"}
               />
             ))}
           </div>
